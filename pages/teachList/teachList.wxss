@@ -1,0 +1,31 @@
+.page_wrap{background-color:#f4f4f4;position: relative;display: -webkit-box;-webkit-box-orient: vertical;-webkit-box-pack: justify;}
+.teach_head{margin-bottom:10px;position: relative;left: 0;bottom:0;right: 0;margin-bottom: 0;margin-top: 10rpx;}
+.teach_about_img{display:block;width:100%;}
+.tab_head{border-bottom:1px solid #e5e5e5;display:flex;height:48px;line-height:48px;}
+.tab_head_item{color:#111;display:flex;font-size:14px;flex:1;justify-content:center;}
+.teach_banner{width: 100%;}
+.teach_banner image{display: block;width: 100%;height: 320rpx;}
+.teach_pt_list{display: -webkit-box;height: 74rpx;-webkit-box-align: center;font-size: 24rpx;color:#5871a6;padding-left: 30rpx;background: #fff;margin-bottom: 20rpx;pointer-events: none;}
+.teach_pt_list .item_title{display: block;height: 74rpx;line-height:74rpx;white-space: nowrap;text-overflow: ellipsis;overflow:hidden;width: 97%;}
+.teach_cnt_wrap{background: #fff;width: 100%;}
+.teach_cnt_wrap .teach_list{display: -webkit-box;padding:30rpx;background: #fff;width: 100%;box-sizing: border-box;height: 238rpx;-webkit-box-align: center;}
+.teach_cnt_wrap form{display: block;position: relative;}
+.teach_cnt_wrap form:after{display: block;content:'';position: absolute;left: 30rpx;right: 0;bottom: 0;height: 1rpx;background: #e7e7e7;}
+.teach_cnt_wrap .teach_list:active{background: #f4f4f4;}
+.teach_list .teach_img{position:relative;width: 250rpx;height:178rpx;margin-right:20rpx;}
+.teach_list .teach_img:before{position: absolute;content:'';left: 0;right: 0;top:0;bottom:0;background:rgba(0,0,0,0.3);border-radius: 6rpx;}
+.teach_list .teach_img image{display: block;width: 100%;height: 100%;border-radius: 6rpx;}
+.teach_list .teach_img:after{position: absolute;left: 0;right: 0;top:0;bottom:0;background: url("https://cdn.upchina.com/front/gudaka/images/list_play_icon.png") no-repeat center;background-size: cover;width:48rpx;height: 48rpx;content:'';margin: auto;z-index: 1;}
+.teach_list .teach_info{-webkit-box-flex: 1;height:178rpx;display: -webkit-box;-webkit-box-orient: vertical;-webkit-box-pack: justify;}
+.teach_list .teach_info .teach_title{font-size: 30rpx;line-height: 1.4;display:-webkit-box;-webkit-box-orient:vertical;overflow: hidden;text-overflow: ellipsis;color:#111;-webkit-line-clamp:2;}
+.teach_list .teach_info .teach_presentation{font-size: 24rpx;color:rgba(17,17,17,0.6);line-height: 1;margin: 7rpx 0 23rpx;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.teach_list .teach_info .learn_person{font-size: 24rpx;color:rgba(17,17,17,0.4);line-height: 1;display: -webkit-box;height: 24rpx;-webkit-box-align: center;}
+.teach_list .teach_info .learn_person:before{content:'';display: block;width: 30rpx;height: 18rpx;background: url("https://cdn.upchina.com/front/gudaka/images/learn_person_icon.png") no-repeat center;background-size: cover;display: block;margin-right: 6rpx;vertical-align: middle;}
+.teach_list .teach_info .teach_list_bottom{display: -webkit-box;height: 36rpx;-webkit-box-align: center;-webkit-box-pack: justify;margin-top:10rpx; }
+.teach_info .teach_list_bottom .teach_section{height:28rpx;border: 1rpx solid #f54646;font-size: 18rpx;padding: 0 9rpx;color:#F54646;line-height:28rpx;text-align: center;}
+.teach_info .teach_list_bottom .teach_price{font-size: 36rpx;color:#F54646;line-height: 1;}
+.teach_info .teach_list_bottom .teach_price text{display: inline-block;line-height: 1;text-decoration: line-through;color:rgba(17,17,17,0.40);font-size: 26rpx;}
+.teach_info .learn_progress{color:#f48930;display: -webkit-box;height: 24rpx;-webkit-box-align: center;margin-left:20rpx;}
+.learn_person>text{display: block;line-height: 1;}
+.teach_info .learn_progress:before{display:block;content:'';width: 24rpx;height: 24rpx;background: url("https://cdn.upchina.com/front/gudaka/icon/learn_progress_icon.png") no-repeat center;background-size: cover;margin-right: 5rpx;vertical-align: top;}
+

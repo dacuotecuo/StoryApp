@@ -1,0 +1,39 @@
+@import "../../wxParse/wxParse.wxss";
+.page_wrap{background-color:#f8f8f8;}
+.detail_banner{width: 100%;}
+.detail_banner image{display: block;width: 100%;height: 320rpx;}
+.detail_title{display: -webkit-box;-webkit-box-align: center;height: 80rpx;padding-left: 30rpx;font-size: 30rpx;color:#333;line-height: 1;background: #fff;margin-bottom:20rpx;}
+.detail_tab{display: -webkit-box;height: 88rpx;-webkit-box-align: center;background: #fff;font-size: 30rpx;color:#111;margin-bottom:2rpx;}
+.detail_tab .tab_list{position:relative;width: 50%;-webkit-box-flex: 1;display: -webkit-box;-webkit-box-align: center;-webkit-box-pack: center;height: 100%;}
+.detail_tab .tab_list.active{color:#ef7f21;font-weight: bold;}
+.detail_tab .tab_list.active:after{content:'';position: absolute;left: 0;right: 0;bottom:0;width:50rpx;height: 6rpx;background: #ef7f21;border-radius: 8rpx;margin: auto;}
+.detail_info{background: #fff;padding:30rpx 0 0;margin-bottom: 100rpx;}
+.news_section{padding-bottom: 10px;overflow: hidden;}
+.news_section .section_list{display: -webkit-box;-webkit-box-align: center;height: 60rpx;padding: 0 30rpx;overflow: hidden;white-space: nowrap;}
+.news_section .section_list:active{background: #f2f2f2;}
+.news_section .section_list .play_icon{display: block;width:30rpx;height: 30rpx;background: url("https://cdn.upchina.com/front/gudaka/images/info_play_icon.png") no-repeat center;background-size: cover;margin-right: 10rpx;}
+.news_section .section_list text{display: block;font-size: 30rpx;color:rgba(17,17,17,0.8);line-height: 1;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;box-sizing: border-box;-webkit-box-flex: 1;}
+.news_section .section_list:first-child .play_icon{background: url("https://cdn.upchina.com/front/gudaka/images/info_first_play_icon.png") no-repeat center;background-size: cover;}
+.news_section .section_list:first-child text{color:#ef7f21;}
+.news_cnt{display: block;width: 100%;overflow: hidden;}
+.wxParse-center text{height: 0;display: none;}
+.detail_catalogue{background: #fff;margin-bottom: 100rpx;}
+.detail_catalogue .teach_list{display: -webkit-box;padding:30rpx;background: #fff;width: 100%;box-sizing: border-box;height: 214rpx;-webkit-box-align: center;}
+.detail_catalogue form{display: block;}
+.detail_catalogue .teach_list:active{background: #f4f4f4;}
+.teach_list .teach_img{position:relative;width: 246rpx;height:154rpx;margin-right:20rpx;}
+.teach_list .teach_img:before{position: absolute;content:'';left: 0;right: 0;top:0;bottom:0;background:rgba(0,0,0,0.3);border-radius: 6rpx;}
+.teach_list .teach_img image{display: block;width: 100%;height: 100%;border-radius: 6rpx;}
+.teach_list .teach_img:after{position: absolute;left: 0;right: 0;top:0;bottom:0;background: url("https://cdn.upchina.com/front/gudaka/images/list_play_icon.png") no-repeat center;background-size: cover;width:48rpx;height: 48rpx;content:'';margin: auto;z-index: 1;}
+.teach_list .teach_info{-webkit-box-flex: 1;position: relative;height: 154rpx;}
+.teach_list .teach_info .teach_title{font-size: 30rpx;line-height: 1.4;color:#111;}
+.teach_list .teach_info .teach_presentation{font-size: 24rpx;color:rgba(17,17,17,0.6);line-height: 26rpx;margin: 5rpx 0 23rpx;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.teach_list .see_lesson{display: -webkit-box;width:166rpx;height: 50rpx;border: 1rpx solid #ef7f21;border-radius: 100px;-webkit-box-pack: center;-webkit-box-align: center;font-size:28rpx;color:#ef7f21;line-height: 1;position: absolute;right: 0;bottom:0;box-sizing: content-box;}
+.detail_footer{position: fixed;left: 0;right: 0;bottom:0;height:100rpx;background: #fff;z-index: 100;display: -webkit-box;-webkit-box-align: center;-webkit-box-pack: center;}
+.detail_footer .lesson_price{display: -webkit-box;height: 100%;width: 50%;
+    font-family: 'PingFangSC-Medium';font-size: 36rpx;color:#f3882f;-webkit-box-align: center;-webkit-box-pack: center;}
+.lesson_price .old_price{display:block;font-size: 30rpx;color:#b7b7b7;text-decoration:line-through; }
+.detail_footer form{display: block;height: 100%;-webkit-box-flex: 1;}
+.detail_footer .buy_lesson_btn{display: -webkit-box;width: 100%;height: 100%;-webkit-box-align: center;-webkit-box-pack: center;font-size: 34rpx;color:#fff;background:#f3882f;}
+.buy_lesson_btn:active{opacity: 0.7;}
+.catalogue_num{position: absolute;left: 16rpx;top: 0;background-color: #FF5A00;border-radius: 0 0 2px 2px;color: #fff;font-size: 18rpx;padding: 0 8rpx;height:24rpx;line-height: 24rpx;}

@@ -1,0 +1,14 @@
+function extDate(value) {
+    value = value.toString();
+    var dateArr = {
+      '36500': '永久',
+      '30': '1个月',
+      '7': '7天',
+      '90': '三个月',
+      '365': '一年',
+    };
+    return dateArr[value];
+    }
+module.exports = {
+    extDate:extDate
+};

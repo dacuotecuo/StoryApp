@@ -1,0 +1,57 @@
+<wxs module="extDate" src="my.wxs"></wxs>
+<view class="page_wrap">
+    <view class='userinfo'>
+        <open-data type="userAvatarUrl" class='avatar'></open-data>
+        <open-data type="userNickName" class='uname'></open-data>
+    </view>
+    <view class='menu'>
+        <view class='item' hover-class="item_hover" bindtap="toZerogroup"><button class=' resetBtn' >我的0元团</button></view>
+        <view class='item' hover-class="item_hover" bindtap="toPaidgroup"><button class=' resetBtn' >我的订单</button></view>
+        <view class="item {{status === 'open'?'open' : '' }}" bindtap="flexible"><button class=' resetBtn' >我的课程</button></view>
+        <view class="into_cnt" wx:if="{{status}}">
+            <block wx:for="{{lessonList}}" wx:key="{{lessonList.index}}" wx:if="{{lessonList.length>0}}">
+                <form report-submit="true" class="lesson_item resetBtn" bindsubmit="toLessonDetail" data-id="{{item.courseId ? item.courseId : item.courseIds}}" data-productid="{{item.productid}}" wx:if="{{item.status === 220}}">
+                    <button formType="submit" class="lesson_cnt resetBtn">
+                        <view class="teach_img"><image src="https://cdn.upchina.com/front/gudaka/images/banner_xw.jpg"></image><text class="play_icon"></text></view>
+                        <view class="lesson_txt">
+                            <view class="lesson_title">{{item.productname}}</view>
+                            <view class="order_date">
+                                <view class="order_price">总价<text class="color_txt">￥{{extDate.toFixed(item.totalprice)}}</text></view>
+                                <view class="order_expiry">有效期：{{extDate.extDate(item.totaldays)}}</view>
+                            </view>
+                            <view class="learn_progress"  wx:if="{{item.learnCount}}">已学习到第{{item.learnCount.index+1}}节</view>
+                            <button class="lesson_btn resetBtn">继续学习</button>
+                        </view>
+                    </button>
+                </form>
+            </block>
+            <view class="recommend" wx:if="{{!lessonList}}">
+                <view class="no_lesson">暂无课程~</view>
+                <view class="recommend_lesson">
+                    <view class="recommend_title">强势推荐</view>
+                    <view class="recommend_txt">
+                        <text>· 一门足以颠覆你的炒股认知成为你人生转折点的课程</text>
+                        <text>· 职业操盘手都在学的课程，30多位游资大佬推荐</text>
+                        <!--<text>· 限时优惠立省300元，11月22日即刻恢复原价</text>-->
+                    </view>
+                 <!--   <image src="https://cdn.upchina.com/front/gudaka/images/prodess_bg.png" mode="widthFix" class="progress_bg"></image>-->
+                    <form report-submit="true" class="lesson_item resetBtn" bindsubmit="toLessonDetail" data-id="{{recommondCnt.kcid}}">
+                        <button formType="submit" class="lesson_cnt resetBtn" >
+                            <view class="teach_img"><image src="{{recommondCnt.imgurl}}"></image><text class="play_icon"></text></view>
+                            <view class="lesson_txt">
+                                <view class="lesson_title">{{recommondCnt.title}}</view>
+                                <view class="learn_person">2100人在学</view>
+                                <view class="order_date">
+                                    <view class="totalprice">促销价<text class="color_txt">￥{{extDate.toFixed(recommondCnt.totalprice)}}</text></view>
+                                    <view class="oldprice">￥{{extDate.toFixed(recommondCnt.oldprice)}}</view>
+                                </view>
+                            </view>
+                            <button class="lesson_btn resetBtn">省300元</button>
+                        </button>
+                    </form>
+                </view>
+            </view>
+        </view>
+        <view class='item' hover-class="item_hover"><button class=' resetBtn' open-type="contact" session-from="default" send-message-title="顶级游资王心吾强势入驻，职业操盘手都在学的课程，30多位游资大佬推荐！立戳》" send-message-img="{{img}}" send-message-path="/pages/index/index" plain show-message-card="true">联系客服</button></view>
+    </view>
+</view>

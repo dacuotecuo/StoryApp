@@ -1,0 +1,41 @@
+<import src="/common/template/networkStatus.wxml" />
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="page_wrap">
+    <video src="{{videoDetail.url}}" controls class="video_box" wx:if="{{isShow && mediaType === 1}}"></video>
+    <view class="audio_wrap"  wx:else>
+        <image src="{{teachImg}}"></image>
+        <view class="audio_mask" wx:if="{{audioLoad}}">
+            <image src="https://cdn.upchina.com/front/gudaka/icon/pay_loading.png" class="audioload"></image>
+            <text>正在努力为您加载...</text>
+        </view>
+        <view class="audio_cnt">
+            <view class="slider_wrap">
+                <text class="start_time">{{currentTime}}</text>
+                <slider value="{{progress}}" max="{{sliderMax}}" bindchange="timeSliderChanged" left-icon="cancel" right-icon="success_no_circle" color="#fff" selected-color="#FAA846" block-size="12" block-color="#FFFFFF" />
+                <text class="sum_time">{{duration}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="audio_play_wrap">
+        <view class="play_control">
+            <view class="prev_btn {{prevDisable}}" bindtap="toPrev"></view>
+            <view class="audio_control {{status}}"  data-status="{{status}}" bindtap="clickAudio"></view>
+            <view class="next_btn {{nextDisable}}" bindtap="toNext"></view>
+        </view>
+    </view>
+    <view class="video_title">{{videoDetail.title}}</view>
+    <view class="teacher_info">
+        <view class="author">
+            <image src="{{videoDetail.teacher.imgurl}}"></image>
+            <text>{{videoDetail.teacher.name}}</text>
+        </view>
+        <view class="teacher_synopsis">{{videoDetail.teacher.desc}}</view>
+    </view>
+    <view class="audio_txt">
+        <view class="txt_title">内容简介</view>
+        <view class="audio_articles">
+            <template is="wxParse" data="{{wxParseData:contentText.nodes}}"/>
+        </view>
+    </view>
+    <template is="networkStatus" data="{{...networkStatus}}" />
+</view>

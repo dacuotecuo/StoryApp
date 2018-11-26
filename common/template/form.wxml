@@ -1,0 +1,5 @@
+<template name="form">
+  <form bindsubmit="formSubmit" report-submit="true">
+  <button formType="submit" type="default" size="mini">提交表单</button>
+  </form>
+</template>

@@ -1,0 +1,202 @@
+<import src="/common/template/networkStatus.wxml"/>
+<import src="/common/template/loadMoreBar.wxml"/>
+<import src="/common/template/form.wxml"/>
+<wxs module="filters" src="index.wxs"></wxs>
+
+<view class="page_wrap {{isIphoneX ? 'inset_height' : '' }}">
+
+    <!-- <template is='form' /> -->
+    <view class="tab">
+        <view class="tab_item">
+            <form report-submit="true" class="tab_link" bindsubmit="toDetails"
+                  data-url="/pages/groupList/groupList?course={{course}}">
+                <button formType="submit">
+                    <image class="tab_img" src="/images/zero.png"/>
+                    <text class="tab_txt">0元团</text>
+                   <!-- <text class="tab_icon">免费送</text>-->
+                </button>
+            </form>
+        </view>
+
+        <view class="tab_item">
+            <form report-submit="true" class="tab_link" bindsubmit="toSwitch" data-url="/pages/teachList/teachList">
+                <button formType="submit">
+                    <image class="tab_img" src="/images/xw_logo.png"/>
+                    <text class="tab_txt">心吾大讲堂</text>
+                     <text class="tab_icon">限时直降</text>
+                </button>
+            </form>
+        </view>
+
+        <view class="tab_item">
+            <form report-submit="true" class="tab_link" bindsubmit="toDetails" data-url="/pages/diagnosisSearch/diagnosisSearch"
+                  wx:if='{{is_bind_tel}}'>
+                <button formType="submit">
+                    <image class="tab_img" src="/images/aistock.png"/>
+                    <text class="tab_txt">免费诊股</text>
+                </button>
+            </form>
+            <form report-submit="true" bindsubmit="bindTel" class="tab_link zg_tab" wx:else>
+                <button class="resetBtn" formType="submit" open-type="getPhoneNumber"
+                        bindgetphonenumber="getPhoneNumber">
+                    <image class="tab_img" src="/images/aistock.png"/>
+                    <text class="tab_txt">免费诊股</text>
+                </button>
+            </form>
+        </view>
+    </view>
+    <!--智能诊股-->
+    <view class="header_zg">
+       <!-- <swiper class='news_item' autoplay="false" interval="3000" duration="1000"  circular="true">
+            <swiper-item>
+                <form report-submit="true" class="tab_link" bindsubmit="toDetails" data-url="/pages/diagnosisSearch/diagnosisSearch" wx:if='{{is_bind_tel}}'>
+                    <button formType="submit"></button>
+                </form>
+                <form report-submit="true" bindsubmit="bindTel" class="tab_link" wx:else>
+                    <button class="resetBtn" formType="submit" open-type="getPhoneNumber"
+                            bindgetphonenumber="getPhoneNumber"></button>
+                </form>
+            </swiper-item>
+            <swiper-item>
+                <form report-submit="true" class="xw_bg" bindsubmit="toCourse" data-id="{{popId}}">
+                    <button formType="submit"></button>
+                </form>
+            </swiper-item>
+        </swiper>-->
+        <form report-submit="true" class="xw_bg" bindsubmit="toCourse" data-id="{{popId}}">
+            <button formType="submit"></button>
+        </form>
+    </view>
+    <!--五星股票-->
+    <view class='news'>
+        <view class='logo'>
+            <!-- <text>五星资讯</text> -->
+            <image class='logo_img' src='/images/fivestarNews.png'></image>
+        </view>
+
+        <swiper class='news_item' autoplay="false" interval="4000" vertical="true" circular="true">
+            <block wx:for="{{newsTitle}}" wx:key="item.id">
+                <swiper-item data-id="{{index}}" bindtap='newsDetail' catchtouchmove='catchTouchMove'>
+                    <view class="item_title"><text class="hot_txt">热门</text><text class="news_txt">{{item}}</text></view>
+                </swiper-item>
+            </block>
+        </swiper>
+
+    </view>
+    <view class='content'>
+        <form report-submit="true" bindsubmit='gotoKline'>
+            <view class='info'>
+                <button class='resetBtn' formType="submit">
+                    <text class='info_1'>五星股票池</text>
+                    <text class='info_2'>市场强势买入机会潜力股推荐</text>
+                    <text class='info_3'>更多</text>
+                    <image class='info_4' src='/images/icon_arrow.png'></image>
+                </button>
+            </view>
+        </form>
+    </view>
+    <view class='main'>
+        <view class='cont_fixed'>
+            <view class='item_head'>
+                <view class='item'>名称</view>
+            </view>
+            <view wx:for="{{stock}}" wx:key="{{index}}" wx:for-index="idx" class="item_wrap {{ idx == 0 ? 'hot' : ''}}">
+                <view class='item_fixed'>
+                    <view class='stock_name'>{{item.sName}}
+                        <view class='stock_code'>{{item.sCode}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class='main_box'>
+            <view class='list_head'>
+                <view class='item'>信号持续</view>
+                <view class='item'>入选价格
+                </view>
+                <view class='item'>入选后最高涨幅</view>
+                <view class='item'>当日涨幅</view>
+                <view class='item'>信号时间</view>
+                <view class='item'>信号状态</view>
+            </view>
+            <view class='list_main' wx:for="{{stock}}" wx:key="{{index}}">
+                <view class='line'>
+                    <view class='stock_info'>
+                        <view class='item'>{{item.mField.signalContinue}}天</view>
+                        <view class='item'>{{item.mField.signalPrice}}元</view>
+                        <view class="item  {{item.mField.RiseMax == 0 ? '' :(item.mField.RiseMax > 0 ? 'c_red' : 'c_green')}}">
+                            {{filters.toFix(item.mField.RiseMax*100)}}%
+                        </view>
+                        <view class="item {{item.mField.RiseNow == 0 ? '' :(item.mField.RiseNow > 0 ? 'c_red' : 'c_green')}}">
+                            {{filters.toFix(item.mField.RiseNow*100)}}%
+                        </view>
+                        <view class='item'>{{item.mField.signalTime}}</view>
+                        <view class='item'>{{item.mField.signalStat == 1 ? '未确立' : (item.mField.signalStat == 2 ? '已确立'
+                            : '已结束')}}
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="success_scroll" wx:if="{{pt_scccess_cnt.length}}">
+        <swiper class='pt_item' autoplay="false" interval="4000" duration="1000" vertical="true" circular="true">
+            <block wx:for="{{pt_scccess_cnt}}" wx:key="pt_scccess_cnt.index">
+                <swiper-item data-id="{{index}}" catchtouchmove='catchTouchMove'>
+                    <image class="avatar_img" src="{{item.head_url}}"></image>
+                    <view class="scroll_txt">恭喜
+                        <text class="avatar_name">{{item.nickname}}</text>
+                        已成功拿到
+                        <text>【{{item.name}}】</text>
+                        一个月免费试用权限
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <view class='free'>
+        <image class='free_img' src='/images/free.png'></image>
+    </view>
+    <view class='lesson'>
+        <view class='lessons' wx:for="{{group_data}}" wx:key="{{index}}">
+            <view wx:if="{{item.status === 1}}">
+                <form report-submit="true" bindsubmit="gotoDetail" data-id="{{item.id}}" class="lesson_item lesson_item_active">
+                    <button formType="submit" class="group_main">
+                        <view class="group_img_wrap">
+                            <image class="group_img" src="{{item.pic}}"></image>
+                        </view>
+                        <view class="group_con_wrap">
+                            <text class="group_title">{{item.name}}</text>
+                            <text class="group_txt">{{item.desc}}</text>
+                        </view>
+                        <view class="group_btn_wrap">
+                            <view>
+                                <view class='group_count'>{{item.suc_count}}人已0元拿</view>
+                                <view class="group_btn_txt">原价{{item.price}}</view>
+                            </view>
+                            <view class="group_btn group_btn_hover">点击免费拿</view>
+                        </view>
+                    </button>
+                </form>
+            </view>
+        </view>
+        <template is="loadMoreBar" data="{{...loadMoreStatus}}"/>
+    </view>
+    <view class="pop" wx:if="{{ isNews }}">
+        <view class="pop_box">
+            <view class="pop_head">
+                <view class="pop_close" bindtap="popClose">
+                    <image class="pop_img" mode="widthFix" src="/images/close.png"></image>
+                </view>
+            </view>
+            <view class="pop_con">
+                <form report-submit="true" bindsubmit="toCourse" data-id="{{popId}}">
+                    <button class="goGroupList resetBtn" hover-stop-propagation="true" formType="submit">
+                        <image class="customBg" mode="widthFix" src='https://cdn.upchina.com/front/gudaka/images/xw_pop.png'></image>
+                    </button>
+                </form>
+            </view>
+        </view>
+    </view>
+    <template is="networkStatus" data="{{...networkStatus}}"/>
+</view>
+

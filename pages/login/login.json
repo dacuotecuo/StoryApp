@@ -1,0 +1,6 @@
+{
+    "enablePullDownRefresh": false,
+    "backgroundColor": "#f1f1f1",
+    "backgroundTextStyle": "dark",
+    "navigationBarTitleText": "确认授权"
+}

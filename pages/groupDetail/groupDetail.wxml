@@ -1,0 +1,341 @@
+<wxs module="filters" src="groupDetail.wxs"></wxs>
+<view class="page_wrap {{isIphoneX ? 'inset_height' : '' }}">
+    <scroll-view class="page_con" scroll-into-view="{{toView}}" scroll-with-animation="true" scroll-y="true">
+        <!--顶部banner-->
+        <view class="header">
+            <swiper indicator-dots="true" indicator-color="#fff" indicator-active-color="#F3882F" autoplay="true" interval="3000" circular="true" duration="500">
+                    <swiper-item bindtap='fiveStar'><image  src="https://cdn.upchina.com/weedu/images/detailbanner1_20180709.png" class="act_img"></image></swiper-item>
+                    <swiper-item bindtap='fiveStar'><image  src="https://cdn.upchina.com/weedu/images/detailbanner2.png" class="act_img"></image></swiper-item>
+                    <swiper-item bindtap='fiveStar'><image  src="https://cdn.upchina.com/weedu/images/detailbanner3.png" class="act_img"></image></swiper-item>
+                    <swiper-item bindtap='fiveStar'><image  src="https://cdn.upchina.com/weedu/images/detailbanner4.png" class="act_img"></image></swiper-item>
+                    <swiper-item bindtap='fiveStar'><image  src="https://cdn.upchina.com/weedu/images/detailbanner5.png" class="act_img"></image></swiper-item>
+            </swiper>
+            <!--已成团滚动列表-->
+            <view class="success_scroll" wx:if="{{pt_scccess_cnt.length}}">
+                <swiper class='pt_item' autoplay="false" interval="4000" duration="1000" vertical="true" circular="true">
+                    <block wx:for="{{pt_scccess_cnt}}" wx:key="pt_scccess_cnt.index">
+                        <swiper-item data-id="{{index}}" catchtouchmove='catchTouchMove'>
+                            <image class="avatar_img" src="{{item.head_url}}"></image>
+                            <view class="scroll_txt">恭喜<text class="avatar_name">{{item.nickname}}</text>拼团成功</view>
+                        </swiper-item>
+                    </block>
+                </swiper>
+            </view>
+        </view>
+        <!--拼团信息-->
+        <view class='stamp'>
+            <!--拼团文案-->
+            <view class='act_info'>
+                <view class='fl'>
+                    <view class='time'>{{now}}场进行中</view>
+                    <view class='group_info'>
+                        <text class='num'>邀请{{ currentGroup.gcount }}人成团</text>
+                        <text class='group_sum'>已经拼{{ filters.toFix(currentGroup.suc_count/(currentGroup.gcount+1)) }}团</text>
+                    </view>
+                    <text class='left_num'>本期共{{ currentGroup.total }}件宝贝，还剩{{ currentGroup.total - currentGroup.suc_count }}件！</text>
+                </view>
+                <view class='price'>
+                    <view class='ori_price'>{{ currentGroup.price }}</view>
+                    <view class='now_price'>0元白拿</view>
+                </view>
+            </view>
+            <!--成员，团长，按钮显示，主要逻辑部分-->
+            <view class='box'>
+                <text class='left_time'>本期剩余 {{left_time}} 结束</text>
+                <!--成员列表-->
+                <view class='partner' wx:if="{{ groupOpt.founder === 0 && groupOpt.status === 'incomplete' && groupOpt.isJoined === 0 && groupOpt.type }}">
+                        <image src='/images/wantu.png'></image>
+                        <image src='/images/wantu.png'></image>
+                        <image src='/images/wantu.png'></image>
+                    </view>
+                <view class="partner" wx:else>
+                    <view class="partner_avatar">
+                        <image src='{{ group_detail.creater_info.head_url }}'></image>
+                        <view class='tag'>团长</view>
+                    </view>
+                    <image src='{{ item.head_url }}' wx:for="{{ group_detail.menbers }}" wx:key="{{index}}"></image>
+                    <image src='/images/wantu.png' wx:for="{{ filters.buildArray(currentGroup.gcount - group_detail.menbers.length ) }}" wx:key="{{index}}"></image>
+                </view>
+                <view wx:if="{{isShow}}">
+                    <!--按钮显示 未成团-->
+                    <view wx:if="{{groupOpt.status === 'incomplete' && !wxShow}}">
+                        <!--未成团，创建者-->
+                        <button class='variable_btn resetBtn yq_wx_btn' open-type='share' wx:if='{{groupOpt.founder === 1 }}'>马上邀请好友，一起免费拿特权</button>
+                        <!--未成团，不是团长，未参过团 新人 -->
+                        <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}" wx:if='{{groupOpt.founder === 0 && groupOpt.isJoined === 0 && groupOpt.type}}'>
+                            <button class='variable_btn resetBtn kt_btn' formType="submit">去开团</button>
+                        </form>
+                        <!--未成团，不是团长，未参过团  通过分享进来的-->
+                        <form report-submit="true" bindsubmit="join" data-id="{{groupOpt.group_id}}" wx:if='{{groupOpt.founder === 0 && groupOpt.isJoined === 0  && !groupOpt.type }}'>
+                            <button class='variable_btn resetBtn' formType="submit">立即加入</button>
+                        </form>
+                        <!--未成团，不是团长，是团员-->
+                        <view wx:if='{{groupOpt.founder === 0 && groupOpt.hasJoin === 1 }}'>
+                            <button class='variable_btn resetBtn yq_wx_btn' open-type='share'>马上邀请好友，一起免费拿特权</button>
+                            <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}">
+                                <button class='variable_btn resetBtn secBtn kt_btn' formType="submit">新开一个团</button>
+                            </form>
+                        </view>
+                        <!--未成团，不是团长，不是团员 已参过团-->
+                        <view wx:if='{{groupOpt.founder === 0 && groupOpt.hasJoin === 0 && groupOpt.isJoined === 1 }}'>
+                            <form report-submit="true" bindsubmit="gotoDetails" data-id="{{currentGroup.id}}">
+                                <button class='variable_btn resetBtn secBtn kt_btn' formType="submit">新开一个团</button>
+                            </form>
+                        </view>
+                    </view>
+                    <!--支付成功-->
+                    <view wx:elif="{{wxShow}}">
+                        <button class='variable_btn resetBtn receive_btn' bindtap="goStockPond">已购买，立即领取特权</button>
+                        <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}">
+                            <button class='variable_btn resetBtn secBtn kt_btn' formType="submit">新开一个团</button>
+                        </form>
+                    </view>
+                    <!--从首页进来的新人-->
+                    <view wx:elif="{{groupOpt.founder === 0 && groupOpt.status === 'incomplete' && groupOpt.isJoined === 0 && groupOpt.type && !wxShow}}">
+                        <view>
+                            <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}">
+                                <button class='variable_btn resetBtn secBtn kt_btn' formType="submit">去开团</button>
+                            </form>
+                        </view>
+                    </view>
+                    <!-- 已成团 -->
+                    <view wx:else>
+                        <view wx:if="{{groupOpt.founder === 1 || groupOpt.hasJoin === 1 }}">
+                            <button class='variable_btn resetBtn' bindtap="goStockPond">已成团，立即查看特权</button>
+                            <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}">
+                                <button class='variable_btn resetBtn secBtn kt_btn' formType="submit">新开一个团</button>
+                            </form>
+                        </view>
+                        <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}" wx:else>
+                            <button class='variable_btn resetBtn kt_btn' formType="submit">团已满，新开一个团</button>
+                        </form>
+                    </view>
+                </view>
+                <!--拼团规则按钮-->
+                <view class="rule_box">
+                    <view class="rule_link" bindtap="scrollTo" data-id="rule">拼团规则</view>
+                </view>
+            </view>
+            <!--已成团大角标-->
+            <image class='mark' src='/images/mark.png' wx:if="{{group_detail.status === 'complete'}}"></image>
+        </view>
+        <!--拼团列表-->
+        <view class="pt_wrap" wx:if="{{pt_list && pt_list.length && groupOpt.isJoined !== 1}}">
+            <view class="pt_title">正在拼团，可直接参与</view>
+            <swiper class='pt_item' autoplay="false" interval="4000" duration="700" vertical="true" circular="true" display-multiple-items="{{pt_list.length > 4 ? 4:pt_list.length}}"
+                    style="{{ 'height:' + (120 * pt_list.length > 480 ? 480 : 120 * pt_list.length) +'rpx' }}">
+                <swiper-item wx:for="{{pt_list}}" wx:key="{{pt_list.index}}">
+                        <view class="pt_cnt">
+                            <view class="pt_list">
+                                <image src="{{item.creater_info.head_url}}"></image>
+                                <text class="name">{{item.creater_info.nickname}}</text>
+                                <view class="sum_txt">
+                                    <view>还差<text class="c_orange">{{currentGroup.gcount - item.menbers.length}}人</text>成团</view>
+                                    <view class="surplus_date">剩余时间<text class="time">{{left_time}}</text></view>
+                                </view>
+                                <form report-submit="true" class="pt_btn" bindsubmit="gotoDetails" data-id="{{currentGroup.id}}" wx:if="{{item.creater_info.uid === group_uid}}">
+                                    <button formType="submit">查看</button>
+                                </form>
+                                <form report-submit="true" class="pt_btn" bindsubmit="join" data-id="{{item.id}}"  wx:else>
+                                    <button formType="submit">去拼团</button>
+                                </form>
+                            </view>
+                        </view>
+                    </swiper-item>
+            </swiper>
+        </view>
+        <!--详情介绍-->
+        <view class='fivestar module'>
+            <view class="fivestar_head">
+                <view class="fivestar_item">
+                    <text class='title'>正在团购：{{currentGroup.name}}</text>
+                </view>
+                <view class="fivestar_item" wx:if="{{ item_id == 'teach_001' }}">
+                    <navigator class="fivestar_more" url='/pages/fiveStar/fiveStar'>
+                        <text decode>使用技巧 &gt;</text>
+                    </navigator>
+                </view>
+            </view>
+
+            <view>
+                <image src='https://cdn.upchina.com/weedu/images/wx1.png' mode='widthFix'></image>
+                <image src='https://cdn.upchina.com/weedu/images/wx2.png' mode='widthFix'></image>
+                <image src='https://cdn.upchina.com/weedu/images/wx3.png' mode='widthFix'></image>
+            </view>
+        </view>
+        <!--玩法介绍-->
+        <view id="rule" class='rule'>
+            <text class='title'>拼团玩法介绍</text>
+            <image mode='widthFix' src='https://cdn.upchina.com/weedu/images/rule.png'></image>
+            <view class='rules'>
+                <view>
+                    <text class='idx'>1.</text>
+                    <text class='txt'>挑选想要的奖品或特权，转发给微信好友或发到微信群，邀请好友参与成团</text>
+                </view>
+                <view>
+                    <text class='idx'>2.</text>
+                    <text class='txt'>成团后即可获得对应的奖品或特权</text>
+                </view>
+                <view>
+                    <text class='idx'>3.</text>
+                    <text class='txt'>团购成功后，权限会立即发放到您的账户里，您可以下载“股大咖APP”并用当前微信账号登录，即可使用。或直接点击右侧“客服”了解详情使用说明</text>
+                </view>
+                <view>
+                    <text class='idx'>4.</text>
+                    <text class='txt'>开团者可以是老用户，但参团者必须是新用户</text>
+                </view>
+                <view>
+                    <text class='idx'>5.</text>
+                    <text class='txt'>邀请好友已成团，可在“我的-我的0元团”中查看</text>
+                </view>
+                <view>
+                    <text class='idx'>6.</text>
+                    <text class='txt'>支付购买产品，可在“我的-我的订单”中查看</text>
+                </view>
+            </view>
+        </view>
+        <!--加群gif-->
+        <view class="teach_head">
+            <view class="up_group_link" bindtap="showJoinPop">
+                <image mode="widthFix" class="up_group_img" src="https://cdn.upchina.com/acm/weedu/images/add_group.gif"></image>
+            </view>
+        </view>
+        <view class='hongbao module' wx:if='{{ group_detail.menbers.length }}'>
+            <text class='title'>参团记录
+                <text class='num'>（{{ group_detail.menbers.length }}位）</text>
+            </text>
+            <view class='items'>
+                <view class='item' wx:for='{{ group_detail.menbers }}' wx:key='{{ index }}'>
+                    <image class='avatar' src='{{ item.head_url || "/images/thumb.png"}}'></image>
+                    <text class='uname'>{{ item.nickname }}</text>
+                    <text class='time'>{{filters.cutOut(item.add_time)}}</text>
+                    <text class='from'>{{group_detail.group_item.name}}</text>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+
+    <!--客服-->
+    <button class='kf resetBtn' open-type='contact' session-from="default" send-message-title="智能判断股票买卖点，五星买点最高胜率90%" send-message-img="" send-message-path="/pages/groupDetail/groupDetail?id={{groupOpt.group_id}}&itemid={{item_id}}&type=0" show-message-card="true">
+            <image src='/images/kf.png'></image>
+        </button>
+    <!--底部按钮-->
+    <view class='footer' wx:if="{{isShow}}">
+        <view class='footer_box'>
+            <view class='toIndex wx_buy_btn' bindtap='toPay'>
+                <view class='og_price'>￥{{currentGroup.price}}</view>
+                <text>{{wxShow ? '立即续费':'立即购买'}}</text>
+            </view>
+            <view wx:if="{{groupOpt.status === 'incomplete' && !wxShow }}" class='fr'>
+                    <!--当前用户为创建者或者已加入本团-->
+                <button class='tips resetBtn yq_succ_btn' open-type='share' wx:if="{{groupOpt.founder === 1 || groupOpt.hasJoin === 1}}">邀请新用户马上成团</button>
+                    <!--当前用户非创建者，且已加过团-->
+                <form report-submit="true" bindsubmit="gotoDetails" data-id="{{currentGroup.id}}" wx:elif="{{groupOpt.founder === 0 && groupOpt.isJoined === 1 && groupOpt.hasJoin === 0 }}">
+                    <button class='tips resetBtn kt_btn' formType="submit">去开一个新团</button>
+                </form>
+                <button class='tips resetBtn yq_succ_btn' open-type='share' wx:elif="{{groupOpt.founder === 0 && groupOpt.isJoined === 1 && groupOpt.hasJoin === 1 }}">邀请新用户马上成团</button>
+                <!--当前用户非创建者，且未加过团-->
+                <form report-submit="true" bindsubmit="join" data-id="{{groupOpt.group_id}}" wx:elif="{{groupOpt.founder === 0 && groupOpt.isJoined === 0 && groupOpt.group_id}}">
+                    <button class='tips resetBtn' formType="submit">立即加入</button>
+                </form>
+                <!--首页进来的新用户-->
+                <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}" wx:else>
+                    <button class='tips resetBtn kt_btn' formType="submit">去开团</button>
+                </form>
+            </view>
+            <view  class="fr" wx:else>
+                <view wx:if="{{groupOpt.founder === 1 || groupOpt.hasJoin === 1 }}">
+                    <button class='tips resetBtn' bindtap="goStockPond">已成团，立即查看特权</button>
+                </view>
+                <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}">
+                    <button class='tips resetBtn kt_btn' formType="submit">团已满，去开一个新团</button>
+                </form>
+            </view>
+        </view>
+    </view>
+    <!--各种状态的弹框-->
+    <view class='mask' wx:if="{{showMask}}">
+        <!-- 参团者 并且未成团  -->
+        <view class='customBox' wx:if='{{groupOpt.founder === 0 && groupOpt.hasJoin === 1 && groupOpt.status === "incomplete"}}'>
+            <text>你已成功参团，继续邀请好友，一起免费拿特权吧！</text>
+            <button class="goGroupList resetBtn yq_succ_btn" hover-stop-propagation="true" open-type='share'>邀请新用户马上成团</button>
+            <view class='close' bindtap="closeMask">
+                <image src='/images/close.png'></image>
+            </view>
+        </view>
+        <!--  成团 && （创建者 || 参与者） -->
+        <view class='customBox' wx:elif="{{groupOpt.status === 'complete' && ( groupOpt.hasJoin === 1 ) }}">
+            <text>可在个人中心查看已成的团，联系客服立即领取特权！</text>
+            <button class="goGroupList resetBtn receive_btn" hover-stop-propagation="true" bindtap="goStockPond">立即查看特权</button>
+            <view class='close' bindtap="closeMask">
+                <image src='/images/close.png'></image>
+            </view>
+        </view>
+        <!-- 创建者进入  -->
+        <view class='customBox' wx:elif='{{groupOpt.founder === 1 && groupOpt.status === "incomplete"}}'>
+            <text>开团成功！邀请2个新用户马上成团！成团后团长和所有团员立即免费获得五星股票池！</text>
+            <button class="goGroupList resetBtn yq_succ_btn" hover-stop-propagation="true" open-type='share'>邀请2个新用户马上成团</button>
+            <view class="close" bindtap="closeMask">
+                <image src='/images/close.png'></image>
+            </view>
+        </view>
+        <!--已参加过别的团-->
+        <view class='customBox' wx:elif="{{join_groupid && groupOpt.isJoined === 1 && groupOpt.hasJoin !== 1 }}">
+            <text>你已经参加过别的团了，新开一个团，多拿一份免费特权！</text>
+            <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}">
+                <button class="goGroupList resetBtn kt_btn" hover-stop-propagation="true" formType="submit">新开一个团</button>
+            </form>
+            <view class='close' bindtap="closeMask">
+                <image src='/images/close.png'></image>
+            </view>
+        </view>
+        <!--当前团已满并已参过团-->
+        <view class='customBox' wx:elif="{{groupOpt.status === 'complete' && groupOpt.isJoined === 1 && groupOpt.hasJoin !== 1 }}">
+            <text>你已经参加过了，新开一个团，多拿一份免费特权！</text>
+            <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}">
+                <button class="goGroupList resetBtn kt_btn" hover-stop-propagation="true" formType="submit">新开一个团</button>
+            </form>
+            <view class='close' bindtap="closeMask">
+                <image src='/images/close.png'></image>
+            </view>
+        </view>
+        <!--当前团已满，未参过团-->
+        <view class='customBox' wx:elif="{{groupOpt.status === 'complete' && groupOpt.isJoined === 0 && groupOpt.hasJoin === 0 && groupOpt.founder === 0 }}">
+            <text>团已满，去开一个新团</text>
+            <form report-submit="true" bindsubmit="gotoCreate" data-id="{{currentGroup.id}}">
+                <button class="goGroupList resetBtn kt_btn" hover-stop-propagation="true" formType="submit">新开一个团</button>
+            </form>
+            <view class='close' bindtap="closeMask">
+                <image src='/images/close.png'></image>
+            </view>
+        </view>
+    </view>
+    <!--支付成功的弹框-->
+    <view class='mask' wx:if="{{wxShow}}">
+        <view class='customBox'>
+            <text>可在个人中心查看已购买订单，联系客服立即领取特权</text>
+            <button class="goGroupList resetBtn receive_btn" hover-stop-propagation="true" bindtap="goStockPond">立即查看特权</button>
+            <view class='close' bindtap="closeWx">
+                <image src='/images/close.png'></image>
+            </view>
+        </view>
+    </view>
+</view>
+<!--入群弹框-->
+<view class="join_group_pop" wx:if="{{ joinPop }}">
+    <view class="pop_wrap">
+        <view class="close_btn" bindtap="joinPop"><image src="//cdn.upchina.com/front/gudaka/images/wx_close_icon.png" alt=""></image></view>
+        <view class="pop_cnt">
+            <text class="h3">加入心吾短线博弈群和小伙伴一起学习</text>
+            <view class="copy_success" wx:if="{{ joinSuccess }}"><icon type="success" size="20"  class="success_icon"></icon><text>已成功复制微信号</text></view>
+            <view class="wx_chat_num">
+                <text>股大咖小助理</text>
+                <view>微信号：<text id="btn">manylin568</text></view>
+            </view>
+            <view class="wx_add_friend"><image src="//cdn.upchina.com/front/gudaka/images/wx_add_friend.png" alt=""></image></view>
+
+            <view class="chat_btn copy_success_btn" wx:if="{{joinSuccess}}" bindtap="joinPop">已复制成功，前往微信添加</view>
+            <view class="chat_btn copy_btn" bindtap="copyWx" wx:else>复制微信号</view>
+        </view>
+    </view>
+</view>

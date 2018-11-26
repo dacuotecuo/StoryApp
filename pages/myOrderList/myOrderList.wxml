@@ -1,0 +1,195 @@
+<import src="/common/template/networkStatus.wxml"/>
+<import src="/common/template/loadImg.wxml" />
+<wxs module="extDate" src="myOrderList.wxs"></wxs>
+<view class="page_wrap">
+    <!--导航nav-->
+    <view class="order_tab">
+        <view class="tab_list {{currentTab == 1 ? 'active' : '' }}" data-current="1" bindtap="tabEvent">全部</view>
+        <view class="tab_list {{currentTab == 2 ? 'active' : '' }}" data-current="2" bindtap="tabEvent">待付款</view>
+        <view class="tab_list {{currentTab == 3 ? 'active' : '' }}" data-current="3" bindtap="tabEvent">已完成</view>
+    </view>
+    <!--内容列表区域-->
+    <view class="order_wrap" wx:if="{{listData.length > 0}}">
+        <view  class="order_list" wx:for="{{listData}}" wx:for-item="item" wx:key="list">
+            <!--拼团产品220已完成的订单-->
+            <form report-submit="true" class="order_list_wrap" bindsubmit="goStockPond" wx:if="{{item.status === 220 && item.type === 'pt' }}">
+                <button formType="submit" class="resetBtn">
+                    <view class="order_list_head">
+                        <text>订单号：{{item.orderid}}</text>
+                        <text>{{item.ctime}}</text>
+                    </view>
+                    <view class="order_list_cnt">
+                        <view class="img_icon"><image src="https://cdn.upchina.com/front/gudaka/images/order_icon.png"></image></view>
+                        <view class="order_info">
+                            <view class="order_name">{{item.productname}}</view>
+                            <view class="order_date">
+                                <text class="order_price">总价 <text>￥{{item.totalprice/100}}</text></text>
+                                <text class="order_expiry">有效期：{{extDate.extDate(item.totaldays)}}</text>
+                            </view>
+                        </view>
+                        <button class="order_btn completed_btn resetBtn">已完成</button>
+                    </view>
+                </button>
+            </form>
+            <!--拼团课程220已完成的订单-->
+            <form report-submit="true" class="order_list_wrap resetBtn" wx:elif="{{item.status === 220 && item.type === 'kc' && item.kcid === '627' || item.kcid === '2182' }}" data-id="{{item.kcid}}">
+                <button formType="submit" class="resetBtn" open-type="contact" session-from="default">
+                    <view class="order_list_head">
+                        <text>订单号：{{item.orderid}}</text>
+                        <text>{{item.ctime}}</text>
+                    </view>
+                    <view class="order_list_cnt">
+                        <view class="img_icon"><image src="https://cdn.upchina.com/front/gudaka/images/order_icon.png"></image></view>
+                        <view class="order_info">
+                            <view class="order_name">{{item.productname}}</view>
+                            <view class="order_date">
+                                <text class="order_price">总价 <text>￥{{item.totalprice/100}}</text></text>
+                                <text class="order_expiry">有效期：{{extDate.extDate(item.totaldays)}}</text>
+                            </view>
+                        </view>
+                        <button class="order_btn completed_btn resetBtn">已完成</button>
+                    </view>
+                </button>
+            </form>
+            <!--课程220已完成的订单-->
+            <form report-submit="true" class="order_list_wrap resetBtn" wx:elif="{{item.status === 220 && item.type === 'kc' && item.kcid }}" bindsubmit="toCourse" data-id="{{item.kcid}}">
+                <button formType="submit" class="resetBtn">
+                    <view class="order_list_head">
+                        <text>订单号：{{item.orderid}}</text>
+                        <text>{{item.ctime}}</text>
+                    </view>
+                    <view class="order_list_cnt">
+                        <view class="img_icon"><image src="https://cdn.upchina.com/front/gudaka/images/order_icon.png"></image></view>
+                        <view class="order_info">
+                            <view class="order_name">{{item.productname}}</view>
+                            <view class="order_date">
+                                <text class="order_price">总价 <text>￥{{item.totalprice/100}}</text></text>
+                                <text class="order_expiry">有效期：{{extDate.extDate(item.totaldays)}}</text>
+                            </view>
+                        </view>
+                        <button class="order_btn completed_btn resetBtn">已完成</button>
+                    </view>
+                </button>
+            </form>
+            <!--拼团产品180待付款的订单-->
+            <form report-submit="true" class="order_list_wrap" wx:elif="{{item.status === 180 && item.type === 'pt' }}" bindsubmit="toPay" data-pro-name="{{item.productname}}" data-orderid="{{item.orderid}}">
+                <button formType="submit" class="resetBtn">
+                    <view class="order_list_head">
+                        <text>订单号：{{item.orderid}}</text>
+                        <text>{{item.ctime}}</text>
+                    </view>
+                    <view class="order_list_cnt">
+                        <view class="img_icon"><image src="https://cdn.upchina.com/front/gudaka/images/order_icon.png"></image></view>
+                        <view class="order_info">
+                            <view class="order_name">{{item.productname}}</view>
+                            <view class="order_date">
+                                <text class="order_price">总价 <text>￥{{item.totalprice/100}}</text></text>
+                                <text class="order_expiry">有效期：{{extDate.extDate(item.totaldays)}}</text>
+                            </view>
+                        </view>
+                        <button class="order_btn pay_btn resetBtn">去付款</button>
+                    </view>
+                </button>
+            </form>
+            <!--课程180待付款的订单-->
+            <form report-submit="true" class="order_list_wrap" wx:elif="{{item.status === 180 && item.type === 'kc' && item.kcid }}" bindsubmit="toPay" data-id="{{item.kcid}}"  data-pro-name="{{item.productname}}" data-orderid="{{item.orderid}}">
+                <button formType="submit" class="resetBtn">
+                    <view class="order_list_head">
+                        <text>订单号：{{item.orderid}}</text>
+                        <text>{{item.ctime}}</text>
+                    </view>
+                    <view class="order_list_cnt">
+                        <view class="img_icon"><image src="https://cdn.upchina.com/front/gudaka/images/order_icon.png"></image></view>
+                        <view class="order_info">
+                            <view class="order_name">{{item.productname}}</view>
+                            <view class="order_date">
+                                <text class="order_price">总价 <text>￥{{item.totalprice/100}}</text></text>
+                                <text class="order_expiry">有效期：{{extDate.extDate(item.totaldays)}}</text>
+                            </view>
+                        </view>
+                        <button class="order_btn pay_btn resetBtn">去付款</button>
+                    </view>
+                </button>
+            </form>
+            <!--拼团产品70已取消的订单-->
+            <form report-submit="true" class="order_list_wrap" wx:elif="{{item.status === 70 && item.type === 'pt' }}" bindsubmit="toPay" data-pro-name="{{item.productname}}" data-orderid="{{item.orderid}}">
+                <button formType="submit" class="resetBtn">
+                    <view class="order_list_head">
+                        <text>订单号：{{item.orderid}}</text>
+                        <text>{{item.ctime}}</text>
+                    </view>
+                    <view class="order_list_cnt">
+                        <view class="img_icon"><image src="https://cdn.upchina.com/front/gudaka/images/order_icon.png"></image></view>
+                        <view class="order_info">
+                            <view class="order_name">{{item.productname}}</view>
+                            <view class="order_date">
+                                <text class="order_price">总价 <text>￥{{item.totalprice/100}}</text></text>
+                                <text class="order_expiry">有效期：{{extDate.extDate(item.totaldays)}}</text>
+                            </view>
+                        </view>
+                        <button class="order_btn pay_btn resetBtn">再次购买</button>
+                    </view>
+                </button>
+            </form>
+            <!--课程70状态   已取消的订单-->
+            <form report-submit="true" class="order_list_wrap" wx:elif="{{item.status === 70 && item.type === 'kc' && item.kcid }}" bindsubmit="toPay" data-id="{{item.kcid}}"  data-pro-name="{{item.productname}}" data-orderid="{{item.orderid}}">
+                <button formType="submit" class="resetBtn">
+                    <view class="order_list_head">
+                        <text>订单号：{{item.orderid}}</text>
+                        <text>{{item.ctime}}</text>
+                    </view>
+                    <view class="order_list_cnt">
+                        <view class="img_icon"><image src="https://cdn.upchina.com/front/gudaka/images/order_icon.png"></image></view>
+                        <view class="order_info">
+                            <view class="order_name">{{item.productname}}</view>
+                            <view class="order_date">
+                                <text class="order_price">总价 <text>￥{{item.totalprice/100}}</text></text>
+                                <text class="order_expiry">有效期：{{extDate.extDate(item.totaldays)}}</text>
+                            </view>
+                        </view>
+                        <button class="order_btn pay_btn resetBtn">再次购买</button>
+                    </view>
+                </button>
+            </form>
+            <!--80 已过期的订单-->
+            <button  class="order_list_wrap no_active resetBtn" wx:elif="{{item.status === 80}}">
+                <view class="order_list_head">
+                    <text>订单号：{{item.orderid}}</text>
+                    <text>{{item.ctime}}</text>
+                </view>
+                <view class="order_list_cnt">
+                    <view class="img_icon"><image src="https://cdn.upchina.com/front/gudaka/images/order_icon.png"></image></view>
+                    <view class="order_info">
+                        <view class="order_name">{{item.productname}}</view>
+                        <view class="order_date">
+                            <text class="order_price">总价 <text>￥{{item.totalprice/100}}</text></text>
+                            <text class="order_expiry">有效期：{{extDate.extDate(item.totaldays)}}</text>
+                        </view>
+                    </view>
+                    <button class="order_btn resetBtn">已过期</button>
+                    <!-- <button class="order_btn completed_btn resetBtn" bindtap="toPay" open-type="contact" session-from="course">已完成</button>-->
+                </view>
+            </button>
+        </view>
+    </view>
+    <view class="not_order" wx:elif="{{!isLoad.show}}">
+        <image src="https://cdn.upchina.com/front/gudaka/images/not_order.png"></image>
+        <view>您还没有购买任何产品</view>
+    </view>
+    <template is="loadImg" data="{{...isLoad}}" />
+    <view class="loading"></view>
+    <!--调起支付loading-->
+    <view class="pay_load" wx:if="{{isPay}}">
+        <image src="https://cdn.upchina.com/front/gudaka/icon/pay_loading.png"></image>
+    </view>
+    <view class="mask" wx:if="{{ showMask }}">
+        <view class='customBox'>
+            <text>您已购买此课程，点击下方按钮立即观看课程</text>
+            <button class="goGroupList resetBtn" bindtap="toCourse" data-id="{{popId}}">去观看课程</button>
+            <view class='close' bindtap="closeMask">
+                <image src='/images/close.png'></image>
+            </view>
+        </view>
+    </view>
+    <template is="networkStatus" data="{{...networkStatus}}"/>
+</view>

@@ -1,0 +1,56 @@
+<import src="/common/template/networkStatus.wxml" />
+<import src="/common/template/loadImg.wxml" />
+
+<view class="page_wrap">
+    <view class="teach_main">
+        <view class="teach_banner"><image src="https://cdn.upchina.com/front/gudaka/images/banner_xw.jpg"></image></view>
+        <swiper class='teach_pt_list' autoplay="false" interval="3000" duration="1000" vertical="true" circular="true">
+                <swiper-item wx:for="{{buyPerson}}" wx:key="{{buyPerson.index}}">
+                    <view class="item_title">@{{item.username}}已购买{{item.lessonname}}</view>
+                </swiper-item>
+        </swiper>
+        <view class="teach_cnt_wrap">
+            <block wx:for="{{teachList}}" wx:key="{{teachList.index}}">
+                <form report-submit="true" class="lesson_{{item.iId}}" bindsubmit="toTeachDetail" data-id="{{item.iId}}" data-url="/pages/teachDetail/teachDetail">
+                    <button formType="submit" class="resetBtn teach_list">
+                        <view class="teach_img"><image src="{{item.sImgurl}}"></image><text class="play_icon"></text></view>
+                        <view class="teach_info">
+                            <view class="teach_title">{{item.sTitle}}</view>
+                           <!-- <view class="teach_presentation">{{ item.sRemark }}</view>-->
+                            <view class="learn_person"><text>5216人在学</text><text wx:if="{{item.learnCount}}" class="learn_progress">已学习到第{{item.learnCount.index+1}}节</text></view>
+                            <view class="teach_list_bottom">
+                                <view class="teach_section">含{{item.chaptercount}}节课</view>
+                                <view class="teach_price">￥{{item.price}} <text>{{item.oldprice === 0 ? '' : item.oldprice}}</text></view>
+                            </view>
+                        </view>
+                    </button>
+                </form>
+            </block>
+        </view>
+        <template is="loadImg" data="{{...isLoad}}" />
+    </view>
+    <!--入群弹框-->
+    <view class="join_group_pop" wx:if="{{ joinPop }}">
+        <view class="pop_wrap">
+            <view class="close_btn" bindtap="joinPop"><image src="//cdn.upchina.com/front/gudaka/images/wx_close_icon.png" alt=""></image></view>
+            <view class="pop_cnt">
+                <text class="h3">加入心吾短线博弈群和小伙伴一起学习</text>
+                <view class="copy_success" wx:if="{{ joinSuccess }}"><icon type="success" size="20"  class="success_icon"></icon><text>已成功复制微信号</text></view>
+                <view class="wx_chat_num">
+                    <text>股大咖小助理</text>
+                    <view>微信号：<text id="btn">manylin568</text></view>
+                </view>
+                <view class="wx_add_friend"><image src="//cdn.upchina.com/front/gudaka/images/wx_add_friend.png" alt=""></image></view>
+
+                <view class="chat_btn copy_success_btn" wx:if="{{joinSuccess}}" bindtap="joinPop">已复制成功，前往微信添加</view>
+                <view class="chat_btn copy_btn" bindtap="copyWx" wx:else>复制微信号</view>
+            </view>
+        </view>
+    </view>
+    <view class="teach_head">
+        <view class="up_group_link" bindtap="showJoinPop">
+            <image mode="widthFix" class="up_group_img" src="https://cdn.upchina.com/acm/weedu/images/add_group.gif"></image>
+        </view>
+    </view>
+    <template is="networkStatus" data="{{...networkStatus}}" />
+</view>

@@ -1,0 +1,14 @@
+<template name="loadMoreBar">
+    <view wx:if="{{showLoadMoreBar}}" class="up-loadmore-bar">
+        <view wx:if="{{onFetch}}" class="tips">
+            <view class="weui-loading"></view>
+            {{loadingTip}}
+        </view>
+        <view wx:elif="{{error}}" class="tips" bindtap="reloadMore">
+            {{errorTip}}
+        </view>
+        <view wx:elif="{{isNoMoreData}}" class="tips">
+            {{noMoreDataTip}}
+        </view>
+    </view>
+</template>

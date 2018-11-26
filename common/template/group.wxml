@@ -1,0 +1,5 @@
+<template name="group">
+    <navigator wx:if="{{img}}" class="up_group_link" url="/pages/addGroup/addGroup">
+        <image mode="widthFix" class="up_group_img" src="{{img}}"></image>
+    </navigator>
+</template>

@@ -1,0 +1,19 @@
+function extDate(value) {
+    value = value.toString();
+    var dateArr = {
+        '36500': '永久',
+        '30': '1个月',
+        '7': '7天',
+        '90': '三个月',
+        '365': '一年',
+    };
+    return dateArr[value];
+}
+function toFixed(value){
+        var value = (Math.floor(value)/100).toFixed(2);
+        return value;
+}
+module.exports = {
+    extDate:extDate,
+    toFixed:toFixed,
+};

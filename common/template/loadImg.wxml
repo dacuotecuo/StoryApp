@@ -1,0 +1,3 @@
+<template name="loadImg">
+<view class="loading" wx:if="{{show}}"><image src="https://cdn.upchina.com/front/gudaka/images/loading.png"></image></view>
+</template>

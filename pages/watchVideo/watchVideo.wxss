@@ -1,0 +1,36 @@
+.page_wrap{background-color:#f4f4f4;}
+.video_box{display: block;width: 100%;height:420rpx;}
+.video_title{display: -webkit-box;height:79rpx;-webkit-box-align: center;font-size:30rpx;color:#333;padding-left: 30rpx;background: #fff;margin-bottom: 20rpx;}
+.teacher_info{background: #fff;padding:20rpx 30rpx 30rpx;}
+.teacher_info .author{display: -webkit-box;height: 60rpx;-webkit-box-align: center;font-size: 30rpx;color:#333;}
+.teacher_info .author image{display: block;width: 60rpx;height: 60rpx;border-radius: 50%;overflow: hidden;background:#D8D8D8;margin-right: 20rpx;}
+.teacher_info .teacher_synopsis{font-size: 28rpx;color:rgba(17,17,17,0.6);line-height:38rpx;margin-top: 5rpx;}
+.audio_wrap{width: 100%;height: 320rpx;position: relative;}
+.audio_wrap image{display: block;width: 100%;height: 320rpx;}
+.audio_wrap .audio_status{display: block;width: 94rpx;height: 94rpx;position: absolute;left: 0;right: 0;top:0;bottom:0;margin: auto;background: url("https://cdn.upchina.com/front/gudaka/icon/audio_play.png") no-repeat center;background-size: cover;}
+.audio_wrap .audio_status.play{}
+.audio_cnt{display: -webkit-box;width: 100%;height: 60rpx;-webkit-box-align: center;z-index: 100;}
+.audio_cnt .audio_icon{display:block;width:60rpx;height:60rpx;background: url("https://cdn.upchina.com/front/gudaka/icon/audio_pause.png") no-repeat center;background-size: cover;margin-right: 20rpx;}
+.audio_cnt .audio_icon.play{background: url("https://cdn.upchina.com/front/gudaka/icon/audio_play.png") no-repeat center;background-size: cover;}
+.audio_cnt{position: absolute;left:0;right:0;bottom:0;display: -webkit-box;-webkit-box-align: center;height:80rpx;-webkit-box-pack: justify;background: rgba(0,0,0,0.6);padding: 0 30rpx;}
+.slider_wrap{-webkit-box-flex: 1;display: -webkit-box;height: 60rpx;-webkit-box-align: center;-webkit-box-pack: justify;}
+.slider_wrap text{font-size:24rpx;color:#fff;display: block;}
+.slider_wrap .start_time{margin-right:20rpx;}
+.slider_wrap .sum_time{margin-left:20rpx;}
+.slider_wrap slider{-webkit-box-flex: 1;display: block;margin: 0;padding: 0;}
+.audio_mask{position: absolute;left: 0;right: 0;top:0;bottom:0;background: rgba(0,0,0,0.4);z-index: 10;display: -webkit-box;-webkit-box-pack: center;-webkit-box-align: center;font-size: 28rpx;color:#fff;-webkit-box-orient: vertical;}
+.audio_mask text{display: block;}
+.audio_wrap .audioload{width: 64rpx;height: 64rpx;display: block;margin-bottom: 20rpx;animation: loading 1.3s infinite linear;}
+.audio_txt{margin-top: 20rpx;background: #fff;}
+.audio_txt .txt_title{height:90rpx;font-size: 32rpx;color:#111;line-height: 90rpx;padding-left: 30rpx;}
+.audio_txt .txt_title:before{display: inline-block;content:'';margin-right:14rpx;vertical-align: middle;width: 28rpx;height: 32rpx;background: url("https://cdn.upchina.com/front/gudaka/icon/audio_txt_icon.png") no-repeat center;background-size: cover;}
+.audio_play_wrap{display: -webkit-box;height: 150rpx;-webkit-box-align: center;-webkit-box-pack: center;background: #fff;border-bottom: 1rpx solid #e7e7e7;}
+.play_control{display: -webkit-box;/*width: 318rpx;*/width:70%;-webkit-box-align: center;-webkit-box-pack: justify;height: 120rpx;}
+.play_control .prev_btn,.next_btn{display: block;width: 34rpx;height: 34rpx;background: url("https://cdn.upchina.com/front/gudaka/icon/audio_click.png") no-repeat 0 0;background-size:68rpx 68rpx;}
+.play_control .prev_btn.disabled{background-position: 0 -34rpx;}
+.play_control .next_btn{background-position:-34rpx 0;}
+.play_control .next_btn.disabled{background-position:-34rpx -34rpx;}
+.play_control .audio_control{width: 120rpx;height: 120rpx;background: url("https://cdn.upchina.com/front/gudaka/icon/audio_status.png") no-repeat 0 0;background-size:120rpx 240rpx;}
+.audio_control.play{background-position:0 -120rpx;}
+.play_control .prev_btn:active,.next_btn:active,.audio_control:active{opacity: 0.7;}
+.audio_txt .audio_articles{font-size: 30rpx;line-height: 48rpx;color:rgba(17,17,17,0.6);padding:0 30rpx 30rpx;}

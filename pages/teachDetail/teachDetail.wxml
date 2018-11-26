@@ -1,0 +1,60 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="page_wrap">
+    <view class="detail_banner"><image src="{{teachDetail.imgurl}}"></image></view>
+    <view class="detail_title">{{teachDetail.title}}</view>
+    <view class="detail_tab">
+        <view class="tab_list {{currentTab == 1 ? 'active' : '' }}" data-current="1" bindtap="tabEvent">课系介绍</view>
+        <view class="tab_list {{currentTab == 2 ? 'active' : '' }}" data-current="2" bindtap="tabEvent">课系目录</view>
+    </view>
+    <!--课系介绍-->
+    <view class="detail_info" wx:if="{{currentTab == 1 }}">
+        <view class="news_section">
+            <view class="section_list" wx:for="{{newsSection}}" wx:key="{{newsSection.index}}" data-id="{{item.id}}" bindtap="toDetail">
+                <icon class="play_icon"></icon>
+                <text>【第{{item.orderindex}}节】{{item.title}}</text>
+            </view>
+        </view>
+        <view class="news_cnt">
+            <template is="wxParse" data="{{wxParseData:contentText.nodes}}"/>
+        </view>
+    </view>
+    <!--课系目录-->
+    <view class="detail_catalogue" wx:if="{{currentTab == 2 }}">
+        <view class="lesson_catalogue_item">
+            <block wx:for="{{teachDetail.chapters.value}}" wx:key="{{teachDetail.chapters.value.index}}">
+                <form report-submit="true" bindsubmit="toDetail" data-id="{{item.id}}" data-url="/pages/teachDetail/teachDetail">
+                    <button formType="submit" class="resetBtn teach_list">
+                        <view class="teach_img">
+                            <image src="{{item.appvideopic}}"></image>
+                            <text class="play_icon"></text>
+                            <text class="catalogue_num">第{{item.orderindex}}节</text>
+                            <view class="create_time"></view>
+                        </view>
+                        <view class="teach_info">
+                            <view class="teach_title">{{item.title}}</view>
+                            <view class="see_lesson" wx:if="{{isPermission === 1}}">立即观看</view>
+                            <view class="see_lesson" wx:else>付费观看</view>
+                        </view>
+                    </button>
+                </form>
+            </block>
+        </view>
+    </view>
+    <!--底部btn-->
+    <view class="detail_footer" wx:if="{{footerShow}}">
+        <view class="lesson_price">￥{{teachDetail.price}}
+            <text class="old_price" wx:if="{{teachDetail.oldprice !== 0}}">￥{{teachDetail.oldprice}}</text>
+        </view>
+        <form report-submit="true" bindsubmit="toMemoryDetail" data-id="{{ learnCount.id }}" wx:if="{{isPermission === 1 || teachDetail.price == 0 }}">
+            <button formType="submit" class="resetBtn buy_lesson_btn">开始学习</button>
+        </form>
+        <form report-submit="true" bindsubmit="toDetail" wx:else>
+            <button formType="submit" class="resetBtn buy_lesson_btn">全套购买</button>
+        </form>
+
+    </view>
+    <!--调起支付loading-->
+    <view class="pay_load" wx:if="{{isPay}}">
+        <image src="https://cdn.upchina.com/front/gudaka/icon/pay_loading.png"></image>
+    </view>
+</view>

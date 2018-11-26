@@ -1,0 +1,443 @@
+/* pages/noKline/noKline.wxss */
+
+.head {
+  padding-left: 15px;
+  background: url(http://cdn.upchina.com/front/longzhou/images/head.png) no-repeat center;
+  background-size: 100% 100%;
+  height: 150px;
+  color: #fff;
+}
+
+.head .head_1 {
+  font-size: 30px;
+  line-height: 60px;
+}
+
+.head .head_2, .head_3 {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.head .head_4 {
+  font-size: 12px;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  width: 107px;
+  height: 20px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.head .head_tag {
+  display: inline-block;
+  width: 13px;
+  height: 12px;
+  background: url(http://cdn.upchina.com/front/longzhou/images/arrow_down.png) no-repeat center;
+  background-size: cover;
+  margin-left: 5px;
+}
+
+.video_content {
+  padding: 0 16px;
+  margin-bottom: 16px;
+  background: #fff;
+}
+
+.main .list_head {
+  white-space: nowrap;
+  font-size: 0;
+}
+
+.video_title {
+  font-size: 17px;
+  color: #ef7f21;
+  line-height: 40px;
+  border-bottom: 18px solid #fff2cc;
+  border-radius: 2px;
+  width: 80px;
+  height: 42px;
+}
+
+.video_detail {
+  margin-top: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.video_info {
+  font-size: 14px;
+  color: #b8b8b8;
+  margin-top: 10px;
+}
+
+.main .item {
+  display: inline-block;
+  text-align: right;
+}
+
+.main .stock_info {
+  white-space: nowrap;
+  font-size: 0;
+}
+
+.main .item:nth-child(1) {
+  width: 25%;
+}
+
+.main .item:nth-child(2) {
+  width: 27%;
+}
+
+.main .item:nth-child(3) {
+  width: 37%;
+}
+
+.main .item:nth-child(n + 4) {
+  width: 32%;
+}
+
+/*.main .line .item:nth-child(n+2){font-weight: bold;line-height: .5rem;font-size: .18rem}*/
+
+.main .line .item:nth-child(4) {
+  position: relative;
+  white-space: nowrap;
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.main .line .item.c_red {
+  color: #f54646;
+}
+
+.main .line .item.c_green {
+  color: #27b666;
+}
+
+.line .item {
+  /*font-weight: bold;*/
+  line-height: 50px;
+  font-size: 15px;
+  color: #111;
+}
+
+.main .list_head .item {
+  height: 30px;
+  line-height: 30px;
+  color: rgba(17, 17, 17, 0.6);
+  font-size: 12px;
+}
+
+.main .line .item {
+  height: 50px;
+}
+
+.main .stock_name {
+  font-size: 17px;
+  color: #111;
+  margin-top: 9px;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.main .line .stock_code {
+  font-size: 12px;
+  color: #333;
+  opacity: 0.6;
+  line-height: 1;
+  display: block;
+}
+
+.main .hot .item_fixed:before {
+  background: url(http://cdn.upchina.com/front/longzhou/images/hot.png) no-repeat center;
+  background-size: 10px 15px;
+  background-position-y: 15px;
+}
+
+.main .item_fixed:before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 15px;
+  height: 50px;
+  border-bottom: 1px solid #fff;
+  left: 0;
+  top: 0;
+}
+
+.main .active .stage_tip {
+  display: block;
+}
+
+.list_main:last-child .stock_info {
+  border: 0;
+}
+
+.wrap .tip {
+  text-align: left;
+  padding: 15px 15px 10px;
+  font-size: 12px;
+  color: rgba(17, 17, 17, 0.4);
+  line-height: 1.4;
+  background: #f8f8f8;
+}
+
+.mask .pop .close {
+  right: 0;
+}
+
+/*.main{width: 100%;overflow: auto}
+.main_box{width: 9999px;}*/
+
+.main {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 50px;
+}
+
+.main_box {
+  overflow-x: auto;
+  position: absolute;
+  left: 28%;
+  right: 0;
+  top: 0;
+}
+
+.main .active .line {
+  margin-bottom: 227px;
+}
+
+.main .cont_fixed .switch {
+  position: absolute;
+  width: 15px;
+  height: 10px;
+  top: 50%;
+  right: 10px;
+  background: url(http://cdn.upchina.com/front/longzhou/images/arrow_down.png) no-repeat;
+  background-size: cover;
+  transform: translate(0, -50%);
+  transition: transform 0.3s;
+  /*background-color: red;*/
+  z-index: 100;
+}
+
+.main .item:nth-child(5) {
+  width: 36%;
+}
+
+.main .cont_fixed .item:last-child {
+  padding: 0;
+  width: auto;
+  font-size: 12px;
+}
+
+.main .item:last-child {
+  padding-right: 15px;
+}
+
+.main .charts .active .block {
+  border: 0;
+}
+
+.main .charts .active .chart {
+  display: block;
+}
+
+.main .cont_fixed .active .switch {
+  -webkit-transform: rotate(180deg) translate(0, 50%);
+  transform: rotate(180deg) translate(0, 50%);
+}
+
+.cont_fixed {
+  position: relative;
+  background: #fff;
+}
+
+.cont_fixed .item_head {
+  height: 30px;
+  line-height: 30px;
+  color: rgba(51, 51, 51, 0.6);
+  padding-left: 15px;
+}
+
+.cont_fixed .item_fixed {
+  position: relative;
+  height: 50px;
+  border-bottom: 1px solid #e7e7e7;
+  box-sizing: border-box;
+  padding-left: 15px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+}
+
+.cont_fixed .stock_name {
+  margin: 0;
+}
+
+.cont_fixed .active .item_fixed {
+  border: 0;
+}
+
+.limit .main .cont_fixed .stock_name {
+  margin: 0;
+}
+
+/* .item_wrap {background: red} */
+
+.clickstage {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.cont_fixed .item_fixed .stock_code {
+  font-size: 12px;
+  color: #333;
+  opacity: 0.6;
+  line-height: 1;
+}
+
+
+.ft {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 15px;
+  background-color: #fef5dd;
+}
+.ft .ft_1 {
+  font-size: 30rpx;
+  color: #ef7f21;
+}
+.ft .ft_share {
+  position: absolute;
+  display: inline-block;
+  text-align: center;
+  width: 150rpx;
+  height: 25px;
+  line-height: 25px;
+  background: #fd9b1e;
+  border-radius: 100px;
+  font-size: 29rpx;
+  color: #fff;
+  right: 2%;
+  top: 20%;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  height: 50px;
+  line-height: 50px;
+  background-color: #ef7f21;
+  color:#fff;
+}
+.footer .pay_btn{
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  font-size:30rpx;
+  text-align: center;
+  border-right: solid 1px #fff;
+}
+
+.footer .footer_2 {
+  display:inline-block;
+  text-align: center;
+  width: 50%;
+  height: 50px;
+  line-height: 50px;
+}
+.footer_2 .ft_btn{
+  padding: 0;
+  border:none;
+  border-radius: 0;
+  background: none;
+  color: #fff;
+  height: 50px;
+  font-size:30rpx;
+  line-height: 50px;
+}
+.lock {
+  background: url(https://cdn.upchina.com/front/gudaka/images/lock.png) no-repeat center;
+  background-size: 30px 30px;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.pop_close {
+  display: block;
+  height: 30px;
+  position: absolute;
+  top: -32px;
+  right: 8px;
+  width: 30px;
+}
+
+.pop_img {
+  display: block;
+  width: 100%;
+}
+
+.pop_mask {
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.pop_share {
+  background-color: #fff;
+  position: fixed;
+  height: 280px;
+  width: 300px;
+  left: 50%;
+  top: 50%;
+  margin-top: -140px;
+  margin-left: -150px;
+  color: #fff;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.pop_share .pop_bg {
+  height: 160px;
+  background: url(https://cdn.upchina.com/front/gudaka/images/pop_bg.png) no-repeat center;
+  background-size: 100% 100%;
+}
+
+.pop_1 {
+  font-size: 16px;
+  height: 64px;
+  line-height: 64px;
+}
+
+.pop_2 {
+  font-size: 24px;
+  font-weight: bold;
+  height: 48px;
+  line-height: 48px;
+}
+
+.pop_3 {
+  width: 210px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto;
+  background-image: linear-gradient(-90deg, #ffbb24 0%, #ef7f21 100%);
+  box-shadow: 0 4px 12px 0 rgba(240, 128, 33, 0.40);
+  border-radius: 100px;
+  margin-top: 30px;
+  color: #fff;
+}
