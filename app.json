@@ -35,13 +35,13 @@
                 "pagePath": "pages/index/index",
                 "iconPath": "images/index_default.png",
                 "selectedIconPath": "images/index_select.png",
-                "text": "首页"
+                "text": "主页"
             },
             {
                 "pagePath": "pages/teachList/teachList",
                 "iconPath": "images/xw_logo_default.png",
                 "selectedIconPath": "images/xw_logo_press.png",
-                "text": "心吾大讲堂"
+                "text": "发布"
             },
             {
                 "pagePath": "pages/my/my",
