@@ -1,4 +1,6 @@
-// pages/login/index.js
+'use strict'
+const { wx_login } = require('../../common/login.js');
+
 Page({
 
   /**
@@ -62,5 +64,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  //用户点击确认授权按钮的操作时间
+  userinfo_pro: function (ret) {
+    console.log(ret);
   }
 })

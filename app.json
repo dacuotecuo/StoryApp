@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/login/index",
     "pages/index/index",
+    "pages/login/index",
     "pages/publish/index",
     "pages/myself/index"
   ],
@@ -9,14 +9,19 @@
     "list": [
       {
         "pagePath": "pages/index/index",
+        "iconPath": "images/index_default.png",
+        "selectedIconPath": "images/index_select.png",
         "text": "主页"
       },
       {
         "pagePath": "pages/publish/index",
+        "selectedIconPath": "images/plus_select.png",
         "text": "发布"
       },
       {
         "pagePath": "pages/myself/index",
+        "iconPath": "images/my_default.png",
+        "selectedIconPath": "images/my_select.png",
         "text": "我的"
       }
     ]

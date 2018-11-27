@@ -15,7 +15,7 @@
         <view class="login_item">授权登录后可获取更多权限，与其他用户分享您心中的好故事。</view>
     </view>
     <view class="login_foot">
-        <button class="login_btn" hover-class="login_btn_hover" open-type="getUserInfo" lang="zh_CN">确认授权</button>
+        <button class="login_btn" hover-class="login_btn_hover" open-type="getUserInfo" bindgetuserinfo="userinfo_pro"  lang="zh_CN">确认授权</button>
     </view>
 
 </view>
