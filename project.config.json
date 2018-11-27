@@ -1,16 +1,23 @@
 {
-	"description": "项目配置文件。",
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.2",
-	"appid": "wx5e8b314c0c3e2343",
-	"projectname": "%E8%82%A1%E5%A4%A7%E5%92%96",
+	"libVersion": "2.4.0",
+	"appid": "wx9b52f14eba6e62fd",
+	"projectname": "%E6%95%85%E4%BA%8B%E4%BC%9A",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -21,103 +28,13 @@
 			"current": -1,
 			"list": []
 		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
-			"list": [
-				{
-					"id": 1,
-					"name": "ticket2",
-					"pathName": "pages/lessonDetail/lessonDetail",
-					"query": "id=800666435&uid=gSeIXtD067fIuW2I7uZG9nZ3GhFfTcsZOZrpXc4VrLU%3D",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "w9SkndY3VuTjahWNXZmPUv_2srxat44Vf6uRPFE0bvU@cr4dev",
-						"shareKey": "nb9CWGH4uk1RRQIyxWzOyFJytFb1e1Xj9Sp9LtLvrwXt5FqHS-R6Rd6q02zhtHZe0Oi9bw9PfuhZpqrI3ZCRoQ~~"
-					}
-				},
-				{
-					"id": 1,
-					"name": "课程拼团",
-					"pathName": "pages/lessonDetail/lessonDetail",
-					"query": "id=800666443&uid=sX4rVRqcOjcmtzILA8hRYE%2BpF3nu5uMiwZHE%2BubYHTk%3D",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "w9SkndY3VuTjahWNXZmPUv_2srxat44Vf6uRPFE0bvU@cr4dev",
-						"shareKey": "nb9CWGH4uk1RRQIyxWzOyFJytFb1e1Xj9Sp9LtLvrwXt5FqHS-R6Rd6q02zhtHZe0Oi9bw9PfuhZpqrI3ZCRoQ~~"
-					}
-				},
-				{
-					"id": 2,
-					"name": "五星拼团",
-					"pathName": "pages/groupDetail/groupDetail",
-					"query": "id=800666640",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "w9SkndY3VuTjahWNXZmPUv_2srxat44Vf6uRPFE0bvU@cr4dev",
-						"shareKey": "nb9CWGH4uk1RRQIyxWzOyFJytFb1e1Xj9Sp9LtLvrwXt5FqHS-R6Rd6q02zhtHZe0Oi9bw9PfuhZpqrI3ZCRoQ~~"
-					}
-				},
-				{
-					"id": 3,
-					"name": "notify",
-					"pathName": "pages/notify/notify",
-					"query": "id=800666349&itemId=teach_004",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "w9SkndY3VuTjahWNXZmPUv_2srxat44Vf6uRPFE0bvU@cr4dev",
-						"shareKey": "nb9CWGH4uk1RRQIyxWzOyFJytFb1e1Xj9Sp9LtLvrwXt5FqHS-R6Rd6q02zhtHZe0Oi9bw9PfuhZpqrI3ZCRoQ~~"
-					}
-				},
-				{
-					"id": -1,
-					"name": "addGroupSuccess",
-					"pathName": "pages/addGroupSuccess/addGroupSuccess",
-					"query": "id=teach_001"
-				},
-				{
-					"id": 5,
-					"name": "视频播放",
-					"pathName": "pages/watchVideo/watchVideo",
-					"query": "kcid=631&id=218&unionId=tApGuqbaDvnqPuX9WUzYESMyS7xsoPPfloI4jmb33w4%3D",
-					"scene": "1001"
-				},
-				{
-					"id": 6,
-					"name": "课程",
-					"pathName": "pages/watchVideo/watchVideo",
-					"query": "kcid=629&id=314&subtitle=对方水电费谁第三方",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "w9SkndY3VuTjahWNXZmPUv_2srxat44Vf6uRPFE0bvU@cr4dev",
-						"shareKey": "nb9CWGH4uk1RRQIyxWzOyFJytFb1e1Xj9Sp9LtLvrwXt5FqHS-R6Rd6q02zhtHZe0Oi9bw9PfuhZpqrI3ZCRoQ~~"
-					}
-				},
-				{
-					"id": 7,
-					"name": "我的",
-					"pathName": "pages/my/my",
-					"query": "",
-					"scene": "1044",
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "w9SkndY3VuTjahWNXZmPUv_2srxat44Vf6uRPFE0bvU@cr4dev",
-						"shareKey": "nb9CWGH4uk1RRQIyxWzOyFJytFb1e1Xj9Sp9LtLvrwXt5FqHS-R6Rd6q02zhtHZe0Oi9bw9PfuhZpqrI3ZCRoQ~~"
-					}
-				}
-			]
+			"current": -1,
+			"list": []
 		}
 	}
 }

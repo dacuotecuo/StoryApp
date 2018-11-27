@@ -1,2 +1,0 @@
-<!--pages/Kline/Kline.wxml-->
-<web-view src="{{url}}" bindmessage="message"></web-view>

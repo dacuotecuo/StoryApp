@@ -1,9 +1,0 @@
-var filter = {
-    match: function (value,index) {
-        console.log(value,index)
-    },
-
-}
-module.exports = {
-    match: filter.match,
-}

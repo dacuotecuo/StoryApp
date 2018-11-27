@@ -1,57 +1,31 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/teachList/teachList",
-        "pages/teachDetail/teachDetail",
-        "pages/diagnosisSearch/diagnosisSearch",
-        "pages/groupList/groupList",
-        "pages/groupDetail/groupDetail",
-        "pages/lessonDetail/lessonDetail",
-        "pages/my/my",
-        "pages/myGroup/myGroup",
-        "pages/login/login",
-        "pages/fiveStar/fiveStar",
-        "pages/Kline/Kline",
-        "pages/noKline/noKline",
-        "pages/newsDetail/newsDetail",
-        "pages/myOrderList/myOrderList",
-        "pages/notify/notify",
-        "pages/pay/pay",
-        "pages/watchVideo/watchVideo"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "股大咖",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "color": "#a5a5a5",
-        "selectedColor": "#EF7F21",
-        "backgroundColor": "#fff",
-        "borderStyle": "black",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "iconPath": "images/index_default.png",
-                "selectedIconPath": "images/index_select.png",
-                "text": "主页"
-            },
-            {
-                "pagePath": "pages/teachList/teachList",
-                "iconPath": "images/xw_logo_default.png",
-                "selectedIconPath": "images/xw_logo_press.png",
-                "text": "发布"
-            },
-            {
-                "pagePath": "pages/my/my",
-                "iconPath": "images/my_default.png",
-                "selectedIconPath": "images/my_select.png",
-                "text": "我的"
-            }
-        ]
-    },
-    "networkTimeout": {
-        "request": 30000
-    }
+  "pages":[
+    "pages/login/index",
+    "pages/index/index",
+    "pages/publish/index",
+    "pages/myself/index"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/publish/index",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/myself/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#213C5C",
+    "navigationBarTitleText": "故事会",
+    "navigationBarTextStyle": "white"
+  },
+  "debug": true
 }
