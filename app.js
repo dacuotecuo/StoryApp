@@ -1,5 +1,6 @@
 'use strict'
-const { wx_login } = require('./common/login');
+const { wx_login } = require('./common/login')
+const url = require('./common/utils')
 App({
 
   /**
@@ -7,12 +8,23 @@ App({
    */
   onLaunch: function () {
     wx.checkSession({
-      success: function () {
+      fail () {
+        
+      }
+    })
+    wx.login({
+      success (res) {
+        if (res.code) {
+          wx.request({
+            url: url.code_url,
+            data: {
+              code: res.code
+            }
+          })
+        }
       },
-      fail: function () {
-        wx_login()
-      },
-      complete: function () {
+      fail () {
+
       }
     })
   },

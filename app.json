@@ -1,9 +1,9 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/login/index",
     "pages/publish/index",
-    "pages/myself/index"
+    "pages/myself/index",
+    "pages/login/index"
   ],
   "tabBar": {
     "list": [
@@ -15,7 +15,6 @@
       },
       {
         "pagePath": "pages/publish/index",
-        "selectedIconPath": "images/plus_select.png",
         "text": "发布"
       },
       {
