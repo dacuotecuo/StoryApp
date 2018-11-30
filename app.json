@@ -1,11 +1,15 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/publish/index",
+  "pages": [
     "pages/myself/index",
+    "pages/publish/index",
+    "pages/index/index",
     "pages/login/index"
   ],
   "tabBar": {
+    "color": "#a5a5a5",
+    "selectedColor": "#EF7F21",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -15,6 +19,8 @@
       },
       {
         "pagePath": "pages/publish/index",
+        "iconPath": "images/plus.png",
+        "selectedIconPath": "images/plus_select.png",
         "text": "发布"
       },
       {
@@ -28,7 +34,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#213C5C",
-    "navigationBarTitleText": "故事会",
+    "navigationBarTitleText": "夜飞鹊",
     "navigationBarTextStyle": "white"
   },
   "debug": true
